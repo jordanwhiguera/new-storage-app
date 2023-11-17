@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Container from "../Container";
 import Search from "./Search";
@@ -9,7 +10,9 @@ const Navbar = () => {
       <div>
         <Container>
           <div className="flex justify-between items-center">
-            <div>stowbase</div>
+            <div className="text-2xl font-bold hidden sm:block hover:shadow cursor-pointer rounded-lg py-2 md:mr-16">
+              stowbase
+            </div>
             <Search />
             <UserMenu />
           </div>

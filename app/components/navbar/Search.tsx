@@ -3,11 +3,10 @@ import React from "react";
 
 const Search = () => {
   return (
-    <div className="border w-full md:w-auto py-2 rounded-lg hover:shadow cursor-pointer">
-      <div className="border flex justify-between items-center">
-        <div>Location</div>
-        <div className="border-x">Location</div>
-        <div>
+    <div className="border w-full md:w-auto rounded-lg hover:shadow cursor-pointer">
+      <div className="flex justify-between items-center">
+        <div className="w-72">Location</div>
+        <div className="border rounded-lg p-2    bg-rose-500 hover:shadow ">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"

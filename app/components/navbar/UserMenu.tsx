@@ -1,14 +1,17 @@
 "use client";
 import React from "react";
-import Avatar from "./Avatar";
+import Avatar from "../Avatar";
+import Menu from "./Menu";
 
 const UserMenu = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const toggle = () => setIsOpen(!isOpen);
   return (
-    <div className="">
+    <div onClick={toggle} className=" relative md:ml-16">
       <div className="">
         <div
           onClick={() => {}}
-          className="border rounded-lg hover:shadow flex items-center cursor-pointer"
+          className=" rounded-lg hover:shadow py-2 flex items-center cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -23,11 +26,20 @@ const UserMenu = () => {
             />
           </svg>
 
-          <div className="sm:hidden md:block">
+          <div className="">
             <Avatar />
           </div>
         </div>
       </div>
+
+      {isOpen && (
+        <div className="rounded-lg shadow absolute right-0 top-14 overflow-hidden">
+          <div className="flex flex-col  cursor-pointer">
+            <Menu onClick={() => {}} label="Log in" />
+            <Menu onClick={() => {}} label="Profile" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
