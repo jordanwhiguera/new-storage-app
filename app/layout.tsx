@@ -6,6 +6,7 @@ import Modal from "./components/modals/Modal";
 import RegisterModal from "./components/modals/RegisterModal";
 
 import { Toaster } from "react-hot-toast";
+import LoginModal from "./components/modals/LoginModal";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Toaster />
+        <LoginModal />
         <RegisterModal />
         <Navbar />
         {children}

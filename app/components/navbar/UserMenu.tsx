@@ -3,9 +3,11 @@ import React from "react";
 import Avatar from "../Avatar";
 import Menu from "./Menu";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const UserMenu = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = React.useState(false);
   const toggle = () => setIsOpen(!isOpen);
   return (
@@ -37,8 +39,8 @@ const UserMenu = () => {
       {isOpen && (
         <div className="rounded-lg shadow absolute right-0 top-14 overflow-hidden">
           <div className="flex flex-col  cursor-pointer">
-            <Menu onClick={() => {}} label="Log in" />
-            <Menu onClick={registerModal.onOpen} label="Profile" />
+            <Menu onClick={loginModal.onOpen} label="Log in" />
+            <Menu onClick={registerModal.onOpen} label="Sign Up" />
           </div>
         </div>
       )}
