@@ -116,7 +116,14 @@ const Modal: React.FC<ModalProps> = ({
                     label={actionLabel}
                     onClick={handleSubmit}
                   />
+                  <div
+                    className="text-neutral-500
+                  text-center
+                  mt-4
+                  font-light"
+                  ></div>
                 </div>
+                {footer}
               </div>
             </div>
           </div>
