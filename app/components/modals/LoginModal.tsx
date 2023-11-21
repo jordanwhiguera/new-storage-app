@@ -80,7 +80,7 @@ const LoginModal = () => {
         outline
         label="Continue with Google"
         icon={FaGoogle}
-        onClick={() => {}}
+        onClick={() => signIn("google")}
       />
       <div className="justify-center flex flex-row items-center gap-2">
         <div>ALready have an account?</div>

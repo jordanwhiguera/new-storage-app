@@ -37,7 +37,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           </svg>
 
           <div className="">
-            <Avatar />
+            <Avatar src={currentUser?.image} />
           </div>
         </div>
       </div>
