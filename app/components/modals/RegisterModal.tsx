@@ -11,9 +11,11 @@ import toast from "react-hot-toast";
 import { error } from "console";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setLoading] = React.useState(false);
 
   const {
@@ -38,7 +40,10 @@ const RegisterModal = () => {
         setLoading(false);
       });
   };
-
+  const toggle = React.useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
   // Add your form JSX here
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -83,7 +88,7 @@ const RegisterModal = () => {
       <div className="justify-center flex flex-row items-center gap-2">
         <div>ALready have an account?</div>
         <div
-          onClick={registerModal.onClose}
+          onClick={toggle}
           className="text-black cursor-pointer hover:underline"
         >
           Log in

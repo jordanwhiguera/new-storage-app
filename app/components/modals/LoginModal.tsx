@@ -48,6 +48,10 @@ const LoginModal = () => {
       }
     });
   };
+  const toggle = React.useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   // Add your form JSX here
   const bodyContent = (
@@ -83,12 +87,12 @@ const LoginModal = () => {
         onClick={() => signIn("google")}
       />
       <div className="justify-center flex flex-row items-center gap-2">
-        <div>ALready have an account?</div>
+        <div>new?</div>
         <div
-          onClick={registerModal.onClose}
+          onClick={toggle}
           className="text-black cursor-pointer hover:underline"
         >
-          Log in
+          create account
         </div>
       </div>
     </div>
