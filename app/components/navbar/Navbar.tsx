@@ -4,12 +4,15 @@ import Container from "../Container";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import { User } from "@prisma/client";
+import Categories from "./Categories";
+import { useRouter } from "next/navigation";
 
 interface NavbarProps {
   currentUser?: User | null;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
+  const router = useRouter();
   return (
     console.log(currentUser),
     (
@@ -17,7 +20,10 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
         <div>
           <Container>
             <div className="flex justify-between items-center">
-              <div className="text-2xl font-bold hidden sm:block hover:shadow cursor-pointer rounded-lg py-2 md:mr-16">
+              <div
+                onClick={() => router.push("/")}
+                className="text-2xl font-bold hidden sm:block hover:shadow cursor-pointer rounded-lg py-2 md:mr-16"
+              >
                 stowbase
               </div>
               <Search />
@@ -25,6 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
             </div>
           </Container>
         </div>
+        <Categories />
       </div>
     )
   );
