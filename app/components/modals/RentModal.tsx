@@ -7,6 +7,8 @@ import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
 import LocationSelect from "../inputs/LocationSelect";
+import Map from "../Map";
+import ImageUpload from "../inputs/ImageUpload";
 
 enum STEPS {
   CATEGORY = 0,
@@ -38,6 +40,7 @@ const RentModal = () => {
   });
   const category = watch("category");
   const location = watch("location");
+  const imageSrc = watch("imageSrc");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -100,6 +103,29 @@ const RentModal = () => {
       </div>
     );
   }
+  if (step === STEPS.INFO) {
+    bodyContent = (
+      <div className="flex f;ex-col gap-8">
+        <Heading
+          title="What type of space do you have?"
+          subtitle="Select a category"
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.Images) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Add images" subtitle="Upload images of your space" />
+        <ImageUpload
+          value={imageSrc}
+          onChange={(value) => setCustomValue("imageSrc", value)}
+        />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={RentModal.isOpen}
