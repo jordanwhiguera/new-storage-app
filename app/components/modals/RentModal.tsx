@@ -74,7 +74,6 @@ const RentModal = () => {
       locationValue: data.location.label, // Assuming 'location.label' contains the address
     };
 
-    console.log(modifiedData);
     axios
       .post("/api/listings", modifiedData)
       .then(() => {
