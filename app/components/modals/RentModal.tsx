@@ -5,22 +5,28 @@ import useRentModal from "@/app/hooks/useRentModal";
 import Heading from "../Heading";
 import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, useForm, SubmitHandler, set } from "react-hook-form";
 import LocationSelect from "../inputs/LocationSelect";
 import Map from "../Map";
 import ImageUpload from "../inputs/ImageUpload";
+import Input from "../inputs/Input";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
-  INFO = 2,
-  Images = 3,
-  Description = 4,
-  Price = 5,
+  // INFO = 2,
+  Images = 2,
+  Description = 3,
+  Price = 4,
 }
 const RentModal = () => {
+  const router = useRouter();
   const RentModal = useRentModal();
   const [step, setStep] = React.useState(STEPS.CATEGORY);
+  const [isLoading, setIsLoading] = React.useState(false);
   const {
     register,
     handleSubmit,
@@ -56,6 +62,36 @@ const RentModal = () => {
   const onNext = () => {
     setStep(step + 1);
   };
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    if (step !== STEPS.Price) {
+      return onNext();
+    }
+    setIsLoading(true);
+    // Extract only the address part (label) from the location object
+    const modifiedData = {
+      ...data,
+      locationValue: data.location.label, // Assuming 'location.label' contains the address
+    };
+
+    console.log(modifiedData);
+    axios
+      .post("/api/listings", modifiedData)
+      .then(() => {
+        toast.success("Listing created");
+        router.refresh();
+        reset;
+        setStep(STEPS.CATEGORY);
+        RentModal.onClose();
+      })
+      .catch((err) => {
+        toast.error("error");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   const actionLabel = React.useMemo(() => {
     if (step === STEPS.Price) {
       return "CREATE";
@@ -103,16 +139,16 @@ const RentModal = () => {
       </div>
     );
   }
-  if (step === STEPS.INFO) {
-    bodyContent = (
-      <div className="flex f;ex-col gap-8">
-        <Heading
-          title="What type of space do you have?"
-          subtitle="Select a category"
-        />
-      </div>
-    );
-  }
+  // if (step === STEPS.INFO) {
+  //   bodyContent = (
+  //     <div className="flex f;ex-col gap-8">
+  //       <Heading
+  //         title="What type of space do you have?"
+  //         subtitle="Select a category"
+  //       />
+  //     </div>
+  //   );
+  // }
 
   if (step === STEPS.Images) {
     bodyContent = (
@@ -126,11 +162,56 @@ const RentModal = () => {
     );
   }
 
+  if (step === STEPS.Description) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Describe your space"
+          subtitle="Tell guests what you love about your space"
+        />
+        <Input
+          id="title"
+          label="Title"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <hr />
+        <Input
+          id="description"
+          label="Description"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+  if (step === STEPS.Price) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading title="Price" subtitle="Set a price per day space" />
+        <Input
+          id="price"
+          label="Price"
+          formatPrice
+          type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+      </div>
+    );
+  }
+
   return (
     <Modal
       isOpen={RentModal.isOpen}
       onClose={RentModal.onClose}
-      onSubmit={onNext}
+      onSubmit={handleSubmit(onSubmit)}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
