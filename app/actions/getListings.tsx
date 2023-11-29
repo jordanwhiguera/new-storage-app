@@ -3,19 +3,21 @@ import prisma from "@/app/libs/prismadb";
 
 export interface IListingsParams {
   userId?: string;
-  startDate?: string;
-  endDate?: string;
+
   locationValue?: string;
   category?: string;
 }
 
 export default async function getListings(params: IListingsParams) {
   try {
-    const { userId, locationValue, startDate, endDate, category } = params;
+    const { userId, locationValue, category } = params;
     let query: any = {};
 
     if (userId) {
       query.userId = userId;
+    }
+    if (category) {
+      query.category = category;
     }
     const listings = await prisma.listing.findMany({
       where: query,
