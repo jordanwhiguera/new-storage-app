@@ -51,7 +51,7 @@ const Hero: React.FC<HeroProps> = ({
         )}
 
         {/* Text Content */}
-        <div className="flex-1 p-12 flex flex-col justify-center">
+        <div className="flex-1 py-12 border flex flex-col justify-center">
           <h1
             className={`text-5xl font-bold mb-6 ${
               textWhite ? "text-white" : "text-black"
