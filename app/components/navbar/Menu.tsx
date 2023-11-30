@@ -7,7 +7,7 @@ interface MenuProps {
 }
 const Menu: React.FC<MenuProps> = ({ onClick, label }) => {
   return (
-    <div onClick={onClick} className="px-4 py-2 hover:bg-slate-400">
+    <div onClick={onClick} className="px-4 py-2 z-100 hover:bg-slate-400">
       {label}
     </div>
   );

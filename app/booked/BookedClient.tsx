@@ -39,23 +39,25 @@ const BookedClient: React.FC<BookedClientProps> = ({
   );
   return (
     <Container>
-      <Heading
-        title="Bookings"
-        subtitle="Previous bookings and upcoming bookings"
-      />
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-        {reservations.map((reservation) => (
-          <ListingCard
-            key={reservation.id}
-            data={reservation.listing}
-            actionId={reservation.id}
-            reservation={reservation}
-            onAction={onCancel}
-            disabled={deletingId === reservation.id}
-            currentUser={currentUser}
-            actionLabel="Cancel reservation"
-          />
-        ))}
+      <div className="-mt-20">
+        <Heading
+          title="Bookings"
+          subtitle="Previous bookings and upcoming bookings"
+        />
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+          {reservations.map((reservation) => (
+            <ListingCard
+              key={reservation.id}
+              data={reservation.listing}
+              actionId={reservation.id}
+              reservation={reservation}
+              onAction={onCancel}
+              disabled={deletingId === reservation.id}
+              currentUser={currentUser}
+              actionLabel="Cancel reservation"
+            />
+          ))}
+        </div>
       </div>
     </Container>
   );
