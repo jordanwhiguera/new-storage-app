@@ -69,7 +69,11 @@ const Hero: React.FC<HeroProps> = ({
 
           {/* Button */}
           {button && (
-            <Button label="Find storage" onClick={() => router.push("/")} />
+            <Button
+              smallWidth
+              label="Find storage"
+              onClick={() => router.push("/")}
+            />
           )}
 
           {/* ...other contents like search input, if necessary... */}
