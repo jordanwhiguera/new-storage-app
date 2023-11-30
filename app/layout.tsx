@@ -36,6 +36,7 @@ export default async function RootLayout({
           blackBackground
           textWhite
           search
+          padRight
         />
         <Hero
           title="Have people in your community move your stuff"
@@ -53,6 +54,7 @@ export default async function RootLayout({
           as a day or as long as you need."
           image="/images/man-garage.jpeg"
           button
+          padRight
         />
         <Hero
           title=" Find affordable airport parking near you"
@@ -70,6 +72,7 @@ export default async function RootLayout({
           as little as you need."
           image="/images/rv.jpeg"
           button
+          padRight
         />
 
         <RentModal />
