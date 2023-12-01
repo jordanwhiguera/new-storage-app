@@ -39,12 +39,12 @@ const Hero: React.FC<HeroProps> = ({
       <div
         className={`flex ${
           reverse ? "flex-col-reverse" : "flex-col"
-        } lg:flex-row min-h-screen`}
+        } lg:flex-row `}
       >
         {/* Conditionally render image first if reOrder is true */}
         {reOrder && image && (
-          <div className="flex-1 py-10 border flex items-center">
-            <div className="border w-full">
+          <div className="flex-1 py-10  flex items-center">
+            <div className=" w-full">
               <img
                 src={image}
                 alt="Hero Image"
@@ -55,7 +55,7 @@ const Hero: React.FC<HeroProps> = ({
         )}
 
         {/* Text Content */}
-        <div className="flex-1 py-12  border flex flex-col justify-center">
+        <div className="flex-1 py-12   flex flex-col justify-center">
           <div className={`${padRight ? "lg:pr-24" : "lg:pl-24"}`}>
             <h1
               className={`text-5xl font-bold mb-6 ${
@@ -114,8 +114,8 @@ const Hero: React.FC<HeroProps> = ({
         {/* Conditionally render image second if reOrder is false or not provided */}
 
         {!reOrder && image && (
-          <div className="flex-1 py-10 border flex items-center">
-            <div className="border w-full">
+          <div className="flex-1 py-10 flex items-center">
+            <div className=" w-full">
               <img
                 src={image}
                 alt="Hero Image"
