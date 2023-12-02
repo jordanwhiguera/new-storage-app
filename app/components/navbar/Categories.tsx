@@ -42,14 +42,15 @@ const Categories = () => {
   return (
     <div className="bg-black">
       <Container>
-        <div className="py-2 flex flex-row items-center justify-between overflow-x-auto">
+        <div className="py-2 flex flex-row items-center flex-nowrap overflow-x-auto">
           {categories.map((item) => (
-            <CategoryBox
-              key={item.label}
-              label={item.label}
-              selected={category === item.label}
-              icon={item.icon}
-            />
+            <div key={item.label} className="flex-shrink-0 mr-2">
+              <CategoryBox
+                label={item.label}
+                selected={category === item.label}
+                icon={item.icon}
+              />
+            </div>
           ))}
         </div>
       </Container>
