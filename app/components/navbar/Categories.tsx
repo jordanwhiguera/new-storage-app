@@ -35,23 +35,25 @@ const Categories = () => {
   const params = useSearchParams();
   const category = params?.get("category");
   const pathname = usePathname();
-  const isMainPage = pathname === "/";
+  const isMainPage = pathname === "/search";
   if (!isMainPage) {
     return null;
   }
   return (
-    <Container>
-      <div className="pt-4 flex flex-row items-center justify-between overflow-x-auto">
-        {categories.map((item) => (
-          <CategoryBox
-            key={item.label}
-            label={item.label}
-            selected={category === item.label}
-            icon={item.icon}
-          />
-        ))}
-      </div>
-    </Container>
+    <div className="bg-black">
+      <Container>
+        <div className="py-2 flex flex-row items-center justify-between overflow-x-auto">
+          {categories.map((item) => (
+            <CategoryBox
+              key={item.label}
+              label={item.label}
+              selected={category === item.label}
+              icon={item.icon}
+            />
+          ))}
+        </div>
+      </Container>
+    </div>
   );
 };
 

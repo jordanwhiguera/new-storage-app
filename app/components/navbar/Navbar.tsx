@@ -17,14 +17,17 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     console.log(currentUser),
     (
-      <div className=" shadow w-full z-10 ">
+      <div className=" shadow w-full z-10 bg-black   ">
         <Container>
-          <div className="flex justify-between items-center">
-            <div
-              onClick={() => router.push("/")}
-              className="text-2xl font-bold hidden sm:block hover:shadow cursor-pointer rounded-lg py-2 md:mr-16"
-            >
-              stowbase
+          {/* Iwant padding horizontal in div below */}
+          <div className="flex justify-between  items-center h-20 ">
+            <div className=" bg-transparent rounded-md hover:bg-slate-600/50">
+              <div
+                onClick={() => router.push("/")}
+                className="text-2xl text-white font-bold hidden sm:block hover:shadow cursor-pointer rounded-lg py-2"
+              >
+                stowbase
+              </div>
             </div>
             <Search />
             <UserMenu currentUser={currentUser} />

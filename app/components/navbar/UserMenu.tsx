@@ -29,15 +29,15 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   }, [currentUser, loginModal, rentModal]);
   return (
     <div onClick={toggle} className=" relative md:ml-16">
-      <div className="">
+      <div className=" bg-transparent rounded-md hover:bg-slate-600/50">
         <div
           onClick={() => {}}
-          className=" rounded-lg hover:shadow py-2 flex items-center cursor-pointer"
+          className=" rounded-lg py-2  flex items-center cursor-pointer"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            fill="currentColor"
+            fill="white"
             className="w-6 h-6"
           >
             <path
@@ -47,7 +47,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             />
           </svg>
 
-          <div className="">
+          <div className="pl-2">
             <Avatar src={currentUser?.image} />
           </div>
         </div>

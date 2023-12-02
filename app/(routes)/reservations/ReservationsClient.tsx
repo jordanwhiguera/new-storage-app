@@ -3,10 +3,10 @@ import React from "react";
 import toast, { Toast } from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { SafeReservation, SafeUser } from "../types";
-import Container from "../components/Container";
-import Heading from "../components/Heading";
-import ListingCard from "../components/listings/ListingCard";
+import { SafeReservation, SafeUser } from "../../types";
+import Container from "../../components/Container";
+import Heading from "../../components/Heading";
+import ListingCard from "../../components/listings/ListingCard";
 
 interface BookedClientProps {
   reservations: SafeReservation[];
@@ -39,22 +39,20 @@ const ReservationsClient: React.FC<BookedClientProps> = ({
   );
   return (
     <Container>
-      <div className="-mt-20">
-        <Heading title="Reservations" subtitle="Bookings on your listings" />
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-          {reservations.map((reservation) => (
-            <ListingCard
-              key={reservation.id}
-              data={reservation.listing}
-              reservation={reservation}
-              actionId={reservation.id}
-              onAction={onCancel}
-              disabled={deletingId === reservation.id}
-              actionLabel="Cancel guest reservation"
-              currentUser={currentUser}
-            />
-          ))}
-        </div>
+      <Heading title="Reservations" subtitle="Bookings on your listings" />
+      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+        {reservations.map((reservation) => (
+          <ListingCard
+            key={reservation.id}
+            data={reservation.listing}
+            reservation={reservation}
+            actionId={reservation.id}
+            onAction={onCancel}
+            disabled={deletingId === reservation.id}
+            actionLabel="Cancel guest reservation"
+            currentUser={currentUser}
+          />
+        ))}
       </div>
     </Container>
   );

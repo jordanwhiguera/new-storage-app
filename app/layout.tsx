@@ -27,8 +27,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Toaster />
-        <Hero
+        {/* <Toaster /> */}
+        {/* <Hero
           title="Make storing your stuff easy"
           subtitle="  Request a pickup, and have your things stored for you."
           image="/images/lady-phone.jpg
@@ -73,13 +73,13 @@ export default async function RootLayout({
           image="/images/rv.jpeg"
           button
           padRight
-        />
-
+        /> */}
+        {/* 
         <RentModal />
         <LoginModal />
-        <RegisterModal />
-        <Navbar currentUser={currentUser} />
-        <div className="pb-20 pt-28">{children}</div>
+        <RegisterModal /> */}
+        {/* <Navbar currentUser={currentUser} /> */}
+        <div className="pb-20">{children}</div>
       </body>
     </html>
   );
