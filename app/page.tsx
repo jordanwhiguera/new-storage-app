@@ -25,7 +25,7 @@ const Home = async ({ searchParams }: HomeProps) => {
   return (
     <div>
       <Toaster />
-      <Navbar currentUser={currentUser} />
+      <Navbar showName currentUser={currentUser} searchHidden />
       <RentModal />
       <LoginModal />
       <RegisterModal />

@@ -4,12 +4,12 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 interface SearchProps {
-  className?: string; // Optional string property
-  // Include other props as needed
+  className?: string;
 }
 
 const Search: React.FC<SearchProps> = ({ className }) => {
   const router = useRouter();
+
   return (
     <div className={`flex ${className || ""}`}>
       <input
