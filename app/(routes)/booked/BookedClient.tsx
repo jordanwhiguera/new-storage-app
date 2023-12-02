@@ -39,6 +39,7 @@ const BookedClient: React.FC<BookedClientProps> = ({
   );
   return (
     <Container>
+      <div className="mt-16"></div>
       <Heading
         title="Bookings"
         subtitle="Previous bookings and upcoming bookings"

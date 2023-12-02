@@ -19,7 +19,7 @@ const NewLayout = async ({ children }: NewLayoutProps) => {
       <LoginModal />
       <RegisterModal />
       <Navbar currentUser={currentUser} />
-      <div className="-mt-10"> {children}</div>
+      <div className="-mt-12"> {children}</div>
     </div>
   );
 };
