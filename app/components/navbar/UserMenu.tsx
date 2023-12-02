@@ -28,7 +28,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     rentModal.onOpen();
   }, [currentUser, loginModal, rentModal]);
   return (
-    <div onClick={toggle} className=" relative md:ml-16">
+    <div onClick={toggle} className=" relative">
       <div className=" bg-transparent rounded-md hover:bg-slate-600/50">
         <div
           onClick={() => {}}

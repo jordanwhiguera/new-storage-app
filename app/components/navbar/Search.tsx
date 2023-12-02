@@ -3,10 +3,15 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 
-const Search = () => {
+interface SearchProps {
+  className?: string; // Optional string property
+  // Include other props as needed
+}
+
+const Search: React.FC<SearchProps> = ({ className }) => {
   const router = useRouter();
   return (
-    <div className="flex ">
+    <div className={`flex ${className || ""}`}>
       <input
         type="text"
         placeholder="Enter location"
