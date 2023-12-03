@@ -4,6 +4,9 @@ import React from "react";
 import Heading from "../Heading";
 import Image from "next/image";
 import HeartButton from "../HeartButton";
+import Button from "../Button";
+import { FaChevronCircleRight } from "react-icons/fa";
+import { FaChevronCircleLeft } from "react-icons/fa";
 
 interface ListingHeadProps {
   title: string;
@@ -31,6 +34,12 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         />
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
+        </div>
+        <div className="absolute  right-5 top-1/2 hover:opacity-80 transition cursor-pointer">
+          <FaChevronCircleRight size={28} />
+        </div>
+        <div className="absolute  left-5 top-1/2 hover:opacity-80 transition cursor-pointer">
+          <FaChevronCircleLeft size={28} />
         </div>
       </div>
     </div>
