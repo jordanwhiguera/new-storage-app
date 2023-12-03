@@ -20,7 +20,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
 
       <button
         onClick={() => router.push("/search")}
-        className="border border-l-0 rounded-tr-md rounded-br-md p-2 bg-white hover:shadow"
+        className="border border-l-0 rounded-tr-md rounded-br-md p-2 bg-white "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

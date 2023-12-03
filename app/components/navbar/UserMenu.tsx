@@ -32,7 +32,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
     <div onClick={toggle} className=" relative">
       <div
         onClick={() => {}}
-        className=" rounded-lg py-2  flex items-center cursor-pointer "
+        className=" rounded-lg py-2  flex items-center cursor-pointer  "
       >
         <IoMdMenu className="text-white w-8 h-8 ml-2  hover:text-slate-300" />
         <div className="pl-2">
