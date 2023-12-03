@@ -46,25 +46,23 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             {currentUser ? (
               //Need z to display over listing card
               <div className="z-20">
-                <Menu
-                  onClick={() => router.push("/booked")}
-                  label="my bookings"
-                />
+                <Menu onClick={() => router.push("/booked")} label="Booked" />
                 <Menu
                   onClick={() => router.push("/favorites")}
-                  label="my favorites"
+                  label="Favorited"
                 />
+                <Menu onClick={rentModal.onOpen} label="Become a host" />
                 <Menu
                   onClick={() => router.push("/reservations")}
-                  label="my reservations"
+                  label="Host: reservations"
                 />
                 <Menu
                   onClick={() => router.push("/properties")}
-                  label="my properties"
+                  label="Host: listings"
                 />
-                <Menu onClick={rentModal.onOpen} label="beccome a host" />
+
                 <hr />
-                <Menu onClick={() => signOut()} label="logout" />
+                <Menu onClick={() => signOut()} label="Logout" />
               </div>
             ) : (
               <div>
