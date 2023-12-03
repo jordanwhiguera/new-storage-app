@@ -24,11 +24,11 @@ const HeartButton: React.FC<HeartButtonProps> = ({
     >
       <AiOutlineHeart
         size={28}
-        className="fill-green-400 absolute -top-[2px] -right-[2px]"
+        className="fill-black absolute -top-[2px] -right-[2px]"
       />
       <AiFillHeart
         size={24}
-        className={hasFavorited ? `fill-emerald-500` : `fill-neutral-500/70`}
+        className={hasFavorited ? `fill-red-500` : `fill-neutral-500/70`}
       />
     </div>
   );
