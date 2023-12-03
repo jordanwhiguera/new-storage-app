@@ -23,22 +23,21 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     console.log(currentUser),
     (
-      <div className=" shadow w-full z-10 bg-black   ">
+      <div className=" bg-black   ">
         <Container>
           {/* Iwant padding horizontal in div below */}
           <div className="flex justify-between  items-center h-20 ">
-            <div className=" bg-transparent rounded-md hover:bg-slate-600/50 ">
-              <div
-                onClick={() => router.push("/")}
-                className={`text-2xl text-white font-bold 
-                            hover:shadow cursor-pointer rounded-lg py-2 
+            <div
+              onClick={() => router.push("/")}
+              className={`text-2xl text-white font-bold 
+                            hover:text-slate-300 cursor-pointer  py-2 
                             ${showName ? "" : "hidden sm:block"}`}
-              >
-                stowbase
-              </div>
+            >
+              stowbase
             </div>
+
             {searchHidden ? null : (
-              <div className="flex-grow flex justify-center sm:mx-10">
+              <div className="flex-grow flex justify-center sm:ml-10 sm:mr-8">
                 <Search className="md:w-96 w-full" />
               </div>
             )}
