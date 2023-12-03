@@ -19,7 +19,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
     <div
       onClick={() => onClick(label)}
       className={`
-  rounded-xl
+  rounded-md
   border-2
   p-4
   flex
@@ -28,6 +28,7 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
   hover:border-black
   transition
   cursor-pointer
+
   ${selected ? "border-black" : "border-neutral-200"}
   
   `}
