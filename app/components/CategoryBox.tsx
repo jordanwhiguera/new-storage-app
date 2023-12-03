@@ -40,7 +40,7 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
   return (
     <div
       onClick={handleClick}
-      className={` flex  items-center justify-center gap-2 p-3   hover:text-white transition cursor-pointer
+      className={` flex  items-center justify-center gap-2 py-3 pr-3   hover:text-white transition cursor-pointer
     ${selected ? "border-b-4 " : "border-transparent "}
     ${selected ? "text-white " : "text-slate-300 "}
 
