@@ -9,16 +9,22 @@ declare global {
 }
 
 interface ImageUploadProps {
-  onChange: (value: string) => void;
+  onChange: (value: string[]) => void; // Updated to accept an array of strings
   value: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+  // Specify the type of the state as string[]
+  const [uploadedImages, setUploadedImages] = React.useState<string[]>([]);
+
   const handleUpload = React.useCallback(
     (result: any) => {
-      onChange(result.info.secure_url);
+      const newImageURL = result.info.secure_url;
+      const updatedImages = [...uploadedImages, newImageURL];
+      setUploadedImages(updatedImages);
+      onChange(updatedImages); // Pass the array of images back to the parent
     },
-    [onChange]
+    [uploadedImages, onChange]
   );
   return (
     <CldUploadWidget
