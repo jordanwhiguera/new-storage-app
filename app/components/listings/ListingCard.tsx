@@ -64,7 +64,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <Image
             fill
             alt="Listing"
-            src={data.imageSrc}
+            src={data.imageSrc[0]} // Access the first image URL from the array
             className="object-cover h-full w-full group-hover:scale-105 transition"
           />
           {/* Need z lower than user menu to display properly */}

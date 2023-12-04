@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     data: {
       title,
       description,
-      imageSrc,
+      imageSrc: [imageSrc],
       category,
       locationValue,
       price: parseInt(price, 10),
