@@ -9,13 +9,14 @@ declare global {
 }
 
 interface ImageUploadProps {
-  onChange: (value: string[]) => void; // Updated to accept an array of strings
-  value: string;
+  onChange: (value: string[]) => void; // Accept an array of strings
+  value: string[]; // Updated to be an array
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
-  // Specify the type of the state as string[]
-  const [uploadedImages, setUploadedImages] = React.useState<string[]>([]);
+  const [uploadedImages, setUploadedImages] = React.useState<string[]>(
+    value || []
+  );
 
   const handleUpload = React.useCallback(
     (result: any) => {
@@ -26,36 +27,32 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
     },
     [uploadedImages, onChange]
   );
+
   return (
     <CldUploadWidget
       onUpload={handleUpload}
       uploadPreset="iv4ggsvt"
-      options={{
-        maxFiles: 2,
-      }}
+      options={{ maxFiles: 2 }}
     >
-      {({ open }) => {
-        return (
-          <div
-            onClick={() => open?.()}
-            className="relative cursor-pointer hover:opacity-70 transition border-dashed border-2 p-20 border-neautral-300 flex flex-col justify-center items-center gap-4 text-neautral-600"
-          >
-            <TbPhotoPlus size={50} />
-            <div className="font-semi-bold text-lg">Upload a photo</div>
-
-            {value && (
-              <div className="absolute inset-0 w-full h-full">
-                <Image
-                  alt="upload"
-                  fill
-                  style={{ objectFit: "cover" }}
-                  src={value}
-                />
-              </div>
-            )}
-          </div>
-        );
-      }}
+      {({ open }) => (
+        <div
+          onClick={() => open?.()}
+          className="relative cursor-pointer hover:opacity-70 transition border-dashed border-2 p-20 border-neautral-300 flex flex-col justify-center items-center gap-4 text-neautral-600"
+        >
+          <TbPhotoPlus size={50} />
+          <div className="font-semi-bold text-lg">Upload a photo</div>
+          {uploadedImages.map((imageSrc, index) => (
+            <div key={index} className="absolute inset-0 w-full h-full">
+              <Image
+                alt={`Uploaded image ${index}`}
+                fill
+                style={{ objectFit: "cover" }}
+                src={imageSrc}
+              />
+            </div>
+          ))}
+        </div>
+      )}
     </CldUploadWidget>
   );
 };
