@@ -3,6 +3,8 @@ import React from "react";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
 import { TbPhotoPlus } from "react-icons/tb";
+import { FaChevronCircleLeft, FaChevronCircleRight } from "react-icons/fa";
+import useImageNavigate from "@/app/hooks/useImageNavigate";
 
 declare global {
   var cloudinary: any;
@@ -18,12 +20,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
     value || []
   );
 
+  const { currentImageIndex, showNextImage, showPrevImage } = useImageNavigate({
+    totalImages: uploadedImages.length,
+  });
+
   const handleUpload = React.useCallback(
     (result: any) => {
       const newImageURL = result.info.secure_url;
       const updatedImages = [...uploadedImages, newImageURL];
       setUploadedImages(updatedImages);
-      onChange(updatedImages); // Pass the array of images back to the parent
+      onChange(updatedImages);
     },
     [uploadedImages, onChange]
   );
@@ -41,16 +47,40 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
         >
           <TbPhotoPlus size={50} />
           <div className="font-semi-bold text-lg">Upload a photo</div>
-          {uploadedImages.map((imageSrc, index) => (
-            <div key={index} className="absolute inset-0 w-full h-full">
+
+          {uploadedImages.length > 0 && (
+            <div className="absolute inset-0 w-full h-full">
               <Image
-                alt={`Uploaded image ${index}`}
+                alt={`Uploaded image ${currentImageIndex}`}
                 fill
                 style={{ objectFit: "cover" }}
-                src={imageSrc}
+                src={uploadedImages[currentImageIndex]}
               />
             </div>
-          ))}
+          )}
+
+          {uploadedImages.length > 1 && (
+            <>
+              <div
+                className="absolute right-5 top-1/2 hover:opacity-80 transition cursor-pointer z-20"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  showNextImage();
+                }}
+              >
+                <FaChevronCircleRight size={28} />
+              </div>
+              <div
+                className="absolute left-5 top-1/2 hover:opacity-80 transition cursor-pointer z-20"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  showPrevImage();
+                }}
+              >
+                <FaChevronCircleLeft size={28} />
+              </div>
+            </>
+          )}
         </div>
       )}
     </CldUploadWidget>

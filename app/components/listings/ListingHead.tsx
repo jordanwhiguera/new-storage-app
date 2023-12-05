@@ -7,6 +7,7 @@ import HeartButton from "../HeartButton";
 import Button from "../Button";
 import { FaChevronCircleRight } from "react-icons/fa";
 import { FaChevronCircleLeft } from "react-icons/fa";
+import useImageNavigate from "@/app/hooks/useImageNavigate";
 
 interface ListingHeadProps {
   title: string;
@@ -15,6 +16,7 @@ interface ListingHeadProps {
   id: string;
   currentUser?: SafeUser | null;
 }
+
 const ListingHead: React.FC<ListingHeadProps> = ({
   title,
   imageSrc,
@@ -22,19 +24,9 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   id,
   currentUser,
 }) => {
-  // Assuming 'imageSrc' is now an array of image URLs
-  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
-
-  const showNextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageSrc.length);
-  };
-
-  const showPrevImage = () => {
-    setCurrentImageIndex((prevIndex) => {
-      if (prevIndex === 0) return imageSrc.length - 1;
-      return prevIndex - 1;
-    });
-  };
+  const { currentImageIndex, showNextImage, showPrevImage } = useImageNavigate({
+    totalImages: imageSrc.length,
+  });
 
   return (
     <div className="-mt-20">
@@ -49,18 +41,22 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         <div className="absolute top-5 right-5">
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>
-        <div
-          className="absolute right-5 top-1/2 hover:opacity-80 transition cursor-pointer"
-          onClick={showNextImage}
-        >
-          <FaChevronCircleRight size={28} />
-        </div>
-        <div
-          className="absolute left-5 top-1/2 hover:opacity-80 transition cursor-pointer"
-          onClick={showPrevImage}
-        >
-          <FaChevronCircleLeft size={28} />
-        </div>
+        {imageSrc.length > 1 && (
+          <>
+            <div
+              className="absolute right-5 top-1/2 hover:opacity-80 transition cursor-pointer z-10"
+              onClick={showNextImage}
+            >
+              <FaChevronCircleRight size={28} />
+            </div>
+            <div
+              className="absolute left-5 top-1/2 hover:opacity-80 transition cursor-pointer"
+              onClick={showPrevImage}
+            >
+              <FaChevronCircleLeft size={28} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
