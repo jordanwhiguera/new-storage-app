@@ -5,7 +5,7 @@ import GoogleMapReact from "google-map-react";
 interface MapProps {}
 
 const Map = () => {
-  return <div>Map</div>;
+  return <div></div>;
 };
 
 export default Map;

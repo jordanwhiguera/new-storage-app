@@ -49,6 +49,8 @@ const RentModal = () => {
   const category = watch("category");
   const locationValue = watch("locationValue");
   const imageSrc = watch("imageSrc");
+  const locationLatValue = watch("locationLat");
+  const locationLongValue = watch("locationLong");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -57,7 +59,13 @@ const RentModal = () => {
       shouldTouch: true,
     });
   };
+  const handleLatitudeChange = (lat: number | null) => {
+    setValue("locationLat", lat);
+  };
 
+  const handleLongitudeChange = (lng: number | null) => {
+    setValue("locationLong", lng);
+  };
   const onBack = () => {
     setStep(step - 1);
   };
@@ -73,7 +81,9 @@ const RentModal = () => {
     // Extract only the address part (label) from the location object
     const modifiedData = {
       ...data,
-      locationValue: data.locationValue.label, // Assuming 'location.label' contains the address
+      locationValue: data.locationValue?.label,
+      locationLat: data.locationLat,
+      locationLong: data.locationLong,
     };
     axios
       .post("/api/listings", modifiedData)
@@ -135,7 +145,10 @@ const RentModal = () => {
         <LocationSelect
           value={locationValue}
           onChange={(value) => setCustomValue("locationValue", value)}
+          onLatitudeChange={handleLatitudeChange}
+          onLongitudeChange={handleLongitudeChange}
         />
+
         <Map />
       </div>
     );
