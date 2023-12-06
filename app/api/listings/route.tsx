@@ -8,7 +8,16 @@ export async function POST(request: Request) {
     return NextResponse.error();
   }
   const body = await request.json();
-  const { title, description, imageSrc, category, locationValue, price } = body;
+  const {
+    title,
+    description,
+    imageSrc,
+    category,
+    locationValue,
+    locationLat,
+    locationLong,
+    price,
+  } = body;
   Object.keys(body).forEach((value: any) => {
     if (!body[value]) {
       NextResponse.error();
@@ -21,6 +30,8 @@ export async function POST(request: Request) {
       imageSrc,
       category,
       locationValue,
+      locationLat,
+      locationLong,
       price: parseInt(price, 10),
       userId: currentUser.id,
     },

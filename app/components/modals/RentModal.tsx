@@ -37,7 +37,9 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: "",
-      location: null,
+      locationValue: null,
+      locationLat: null,
+      locationLong: null,
       imageSrc: "",
       price: 1,
       title: "",
@@ -45,7 +47,7 @@ const RentModal = () => {
     },
   });
   const category = watch("category");
-  const location = watch("location");
+  const locationValue = watch("locationValue");
   const imageSrc = watch("imageSrc");
 
   const setCustomValue = (id: string, value: any) => {
@@ -71,9 +73,8 @@ const RentModal = () => {
     // Extract only the address part (label) from the location object
     const modifiedData = {
       ...data,
-      locationValue: data.location.label, // Assuming 'location.label' contains the address
+      locationValue: data.locationValue.label, // Assuming 'location.label' contains the address
     };
-
     axios
       .post("/api/listings", modifiedData)
       .then(() => {
@@ -132,8 +133,8 @@ const RentModal = () => {
           subtitle="Enter a location"
         />
         <LocationSelect
-          value={location}
-          onChange={(value) => setCustomValue("location", value)}
+          value={locationValue}
+          onChange={(value) => setCustomValue("locationValue", value)}
         />
         <Map />
       </div>

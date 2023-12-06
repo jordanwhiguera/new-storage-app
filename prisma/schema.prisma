@@ -53,6 +53,8 @@ model Listing {
   createdAt     DateTime @default(now())
   category      String
   locationValue String
+  locationLat   Float? // Added latitude, optional
+  locationLong  Float? // Added longitude, optional
   userId        String   @db.ObjectId
   price         Int
 
