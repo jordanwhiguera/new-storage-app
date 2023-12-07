@@ -3,9 +3,10 @@ import prisma from "@/app/libs/prismadb";
 
 export interface IListingsParams {
   userId?: string;
-
   locationValue?: string;
-  category?: string;
+  locationLat?: number;
+  locationLong?: number;
+  category?: string; // Add this line to include category in the interface
 }
 
 export default async function getListings(params: IListingsParams) {
@@ -16,9 +17,14 @@ export default async function getListings(params: IListingsParams) {
     if (userId) {
       query.userId = userId;
     }
+    if (locationValue) {
+      // Assuming locationValue is the exact address stored in the listing
+      query.locationValue = locationValue;
+    }
     if (category) {
       query.category = category;
     }
+
     const listings = await prisma.listing.findMany({
       where: query,
       orderBy: {

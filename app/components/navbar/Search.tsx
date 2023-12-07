@@ -1,7 +1,10 @@
 "use client";
 
 import React from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import LocationSelect from "../inputs/LocationSelect";
+import { FieldValues, useForm } from "react-hook-form";
+import qs from "query-string";
 
 interface SearchProps {
   className?: string;
@@ -9,24 +12,72 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ className }) => {
   const router = useRouter();
+  const { register, handleSubmit, setValue, watch } = useForm({
+    defaultValues: {
+      locationValue: null,
+      locationLat: null,
+      locationLong: null,
+    },
+  });
 
+  const setCustomValue = (id: any, value: any) => {
+    setValue(id, value, {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
+  };
+
+  const locationValue = watch("locationValue");
+
+  const handleLocationChange = (newValue: any) => {
+    if (newValue) {
+      setCustomValue("locationValue", newValue.label);
+      setCustomValue("locationLat", newValue.latitude);
+      setCustomValue("locationLong", newValue.longitude);
+    }
+  };
+
+  const onSubmit = (data: any) => {
+    // Ensure latitude and longitude are numbers
+    const latitude = parseFloat(data.locationLat);
+    const longitude = parseFloat(data.locationLong);
+
+    // Only add latitude and longitude to the query if they are valid numbers
+    const query = {
+      ...data,
+      locationLat: isNaN(latitude) ? undefined : latitude,
+      locationLong: isNaN(longitude) ? undefined : longitude,
+    };
+
+    const queryString = qs.stringify(query, {
+      skipNull: true,
+      skipEmptyString: true,
+    });
+    router.push(`/search?${queryString}`);
+  };
   return (
-    <div className={`flex ${className || ""}`}>
-      <input
-        type="text"
-        placeholder="Enter location"
-        className="form-input px-4 py-2 border border-r-0 border-white w-full rounded-tl-md bg-slate-600 rounded-bl-md placeholder-slate-300 text-slate-300"
-      />
+    <form
+      className={`flex ${className || ""}`}
+      onSubmit={handleSubmit(onSubmit)}
+    >
+      <div className="p-1 z-20 border border-r-0 border-white w-full rounded-tl-md bg-slate-600 rounded-bl-md placeholder-slate-300 text-slate-300">
+        <LocationSelect
+          value={locationValue}
+          onChange={handleLocationChange}
+          style
+        />
+      </div>
 
       <button
-        onClick={() => router.push("/search")}
-        className="border border-l-0 rounded-tr-md rounded-br-md p-2 bg-white "
+        type="submit"
+        className=" flex items-center justify-center border w-16 border-l-0 rounded-tr-md rounded-br-md p-2 bg-white "
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="black"
-          className="w-12 h-6"
+          className="w-6 h-6 "
         >
           <path
             fillRule="evenodd"
@@ -35,7 +86,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
           />
         </svg>
       </button>
-    </div>
+    </form>
   );
 };
 
