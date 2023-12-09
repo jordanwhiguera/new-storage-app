@@ -61,7 +61,7 @@ const Search: React.FC<SearchProps> = ({ className }) => {
       className={`flex ${className || ""}`}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="p-1 z-20 border border-r-0 border-white w-full rounded-tl-md bg-slate-600 rounded-bl-md placeholder-slate-300 text-slate-300">
+      <div className="p-1 z-10 border border-r-0 border-white w-full rounded-tl-md bg-slate-600 rounded-bl-md placeholder-slate-300 text-slate-300">
         <LocationSelect
           value={locationValue}
           onChange={handleLocationChange}
