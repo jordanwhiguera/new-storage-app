@@ -30,25 +30,30 @@ const Search: React.FC<SearchProps> = ({ className }) => {
 
   const locationValue = watch("locationValue");
 
+  const handleLatitudeChange = (latitude: number | null) => {
+    setCustomValue("locationLat", latitude);
+  };
+
+  const handleLongitudeChange = (longitude: number | null) => {
+    setCustomValue("locationLong", longitude);
+  };
   const handleLocationChange = (newValue: any) => {
-    if (newValue) {
-      setCustomValue("locationValue", newValue.label);
-      setCustomValue("locationLat", newValue.latitude);
-      setCustomValue("locationLong", newValue.longitude);
-    }
+    setCustomValue("locationValue", newValue?.label);
   };
 
   const onSubmit = (data: any) => {
-    // Ensure latitude and longitude are numbers
+    console.log("Form data on submit:", data);
     const latitude = parseFloat(data.locationLat);
     const longitude = parseFloat(data.locationLong);
 
-    // Only add latitude and longitude to the query if they are valid numbers
-    const query = {
-      ...data,
-      locationLat: isNaN(latitude) ? undefined : latitude,
-      locationLong: isNaN(longitude) ? undefined : longitude,
-    };
+    // Adjust query to handle potential undefined values
+    let query = { ...data };
+    if (!isNaN(latitude)) {
+      query.locationLat = latitude;
+    }
+    if (!isNaN(longitude)) {
+      query.locationLong = longitude;
+    }
 
     const queryString = qs.stringify(query, {
       skipNull: true,
@@ -65,6 +70,8 @@ const Search: React.FC<SearchProps> = ({ className }) => {
         <LocationSelect
           value={locationValue}
           onChange={handleLocationChange}
+          onLatitudeChange={handleLatitudeChange}
+          onLongitudeChange={handleLongitudeChange}
           style
         />
       </div>
