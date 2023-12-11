@@ -53,13 +53,12 @@ export default async function getListings(params: IListingsParams) {
         createdAt: "desc",
       },
     });
-    console.log("Query Parameters: ", params);
-    console.log("Constructed Query: ", query);
+
     const safeListings = listings.map((listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),
     }));
-    console.log("Listings returned:", listings);
+
     return safeListings;
   } catch (error: any) {
     throw new Error(error);
