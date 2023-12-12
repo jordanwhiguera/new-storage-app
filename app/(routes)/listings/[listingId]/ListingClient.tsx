@@ -137,3 +137,32 @@ const ListingClient: React.FC<ListingClientProps> = ({
 };
 
 export default ListingClient;
+
+{
+  /* <ListingHead
+            title={listing.title}
+            imageSrc={listing.imageSrc}
+            locationValue={listing.locationValue}
+            id={listing.id}
+            currentUser={currentUser}
+          />
+          <div className="grid grid-cols-1 md:grid-cols-7 md:gap-10 mt-6">
+            <ListingInfo
+              user={listing.user}
+              category={category}
+              description={listing.description}
+              locationValue={listing.locationValue}
+            />
+            <div className="order-first mb-10 md:order-last md:col-span-3">
+              <ListingReservation
+                price={listing.price}
+                totalPrice={totalPrice}
+                dateRange={dateRange}
+                onChangeDate={(value) => setDateRange(value)}
+                onSubmit={onCreateReservaton}
+                disabledDates={disabledDates}
+                disabled={isLoading}
+              />
+            </div>
+          </div> */
+}
