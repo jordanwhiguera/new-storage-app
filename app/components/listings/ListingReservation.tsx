@@ -24,6 +24,24 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   disabledDates,
   disabled,
 }) => {
+  const [isMonthToMonth, setIsMonthToMonth] = React.useState(false);
+  const handleCheckboxChange = () => {
+    setIsMonthToMonth(!isMonthToMonth);
+  };
+  const handleDateChange = (item: any) => {
+    if (isMonthToMonth) {
+      // Update your date state to reflect a single date
+      const newRange = {
+        ...dateRange,
+        startDate: item.selection.startDate,
+        endDate: item.selection.startDate, // End date is the same for single day selection
+      };
+      onChangeDate(newRange);
+    } else {
+      // Handle as a range
+      onChangeDate(item.selection);
+    }
+  };
   return (
     <div className="bg-white rounded-md border-[1px] border-neutral-200 overflow-hidden">
       <div className="flex flex-row items-center gap-1 p-4">
@@ -34,10 +52,11 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       <Calendar
         value={dateRange}
         disabledDates={disabledDates}
-        onChange={(value) => onChangeDate(value.selection)}
+        onChange={handleDateChange}
+        isSingleDateSelection={isMonthToMonth}
       />
       <hr />
-      <Checkbox />
+      <Checkbox onChange={handleCheckboxChange} />
       <hr />
       <div className="p-4">
         <Button disabled={disabled} label="Reserve" onClick={onSubmit} />
