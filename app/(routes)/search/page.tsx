@@ -15,7 +15,7 @@ const HomeV = async ({ searchParams }: HomeProps) => {
   } else {
     listings = []; // or some default value
   }
-
+  listings = await getListings(searchParams);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {
