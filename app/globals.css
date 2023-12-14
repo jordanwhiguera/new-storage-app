@@ -19,6 +19,7 @@ body,
     right: 2.25rem;
   }
 }
+/* more custom right for infity for lg screens */
 @media (min-width: 850px) and (max-width: 900px) {
   .custom-right-md-two {
     right: 1.85rem;
