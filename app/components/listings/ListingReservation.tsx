@@ -58,7 +58,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
           isSingleDateSelection={isMonthToMonth}
         />
         {isMonthToMonth && (
-          <div className="absolute top-4 right-4 w-52 md:w-28 lg:w-36 lg:right-10 h-9 bg-white flex justify-center items-center">
+          <div className="absolute top-4 right-4 w-52 md:w-28 lg:w-36 lg:right-10 h-9 bg-white flex justify-center items-center custom-right-md custom-right-md-two custom-right-lg">
             <FaInfinity size={32} />
           </div>
         )}
