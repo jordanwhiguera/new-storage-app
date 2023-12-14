@@ -7,6 +7,23 @@ body,
 :root {
   height: 100%;
 }
+/* Custom right for infity for md screens */
+@media (min-width: 700px) and (max-width: 767px) {
+  .custom-right-md {
+    right: 3rem;
+  }
+}
+/* custom right for infity for lg screens */
+@media (min-width: 901px) and (max-width: 1022px) {
+  .custom-right-lg {
+    right: 2.25rem;
+  }
+}
+@media (min-width: 850px) and (max-width: 900px) {
+  .custom-right-md-two {
+    right: 1.85rem;
+  }
+}
 .rdrMonth {
   width: 100% !important;
 }

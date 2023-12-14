@@ -4,6 +4,7 @@ import { Range } from "react-date-range";
 import Calendar from "../inputs/Calendar";
 import Button from "../Button";
 import Checkbox from "../inputs/Checkbox";
+import { FaInfinity } from "react-icons/fa6";
 
 interface ListingReservationProps {
   price: number;
@@ -49,12 +50,18 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         <div className="font-light text-neutral-600">day</div>
       </div>
       <hr />
-      <Calendar
-        value={dateRange}
-        disabledDates={disabledDates}
-        onChange={handleDateChange}
-        isSingleDateSelection={isMonthToMonth}
-      />
+      <div className="relative">
+        <Calendar
+          value={dateRange}
+          disabledDates={disabledDates}
+          onChange={handleDateChange}
+          isSingleDateSelection={isMonthToMonth}
+        />
+        <div className=" absolute top-4 right-4 w-52 md:w-28 lg:w-36 lg:right-10 h-9 bg-white flex justify-center items-center custom-infinity-size custom-right-md custom-right-md-two custom-right-lg">
+          <FaInfinity size={32} />
+        </div>
+      </div>
+
       <hr />
       <Checkbox onChange={handleCheckboxChange} />
       <hr />
