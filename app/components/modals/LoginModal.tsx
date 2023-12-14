@@ -58,7 +58,7 @@ const LoginModal = () => {
     <div className="flex flex-col gap-4">
       {" "}
       <Heading title="welcome back" subtitle="Login to your account" />
-      <Input
+      {/* <Input
         id="email"
         label="Email"
         disabled={isLoading}
@@ -73,41 +73,48 @@ const LoginModal = () => {
         register={register}
         errors={errors}
         required
-      />
-    </div>
-  );
-
-  const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
-      <hr />
-      <Button
-        outline
-        label="Continue with Google"
-        icon={FaGoogle}
-        onClick={() => signIn("google")}
-      />
-      <div className="justify-center flex flex-row items-center gap-2">
-        <div>new?</div>
-        <div
-          onClick={toggle}
-          className="text-black cursor-pointer hover:underline"
-        >
-          create account
-        </div>
+      /> */}
+      <div className="mt-3">
+        <Button
+          label="Continue with Google"
+          icon={FaGoogle}
+          onClick={() => signIn("google")}
+        />
       </div>
     </div>
   );
+
+  // const footerContent = (
+  //   <div className="flex flex-col gap-4 mt-3">
+  //     <hr />
+  //     <Button
+  //       outline
+  //       label="Continue with Google"
+  //       icon={FaGoogle}
+  //       onClick={() => signIn("google")}
+  //     />
+  //     <div className="justify-center flex flex-row items-center gap-2">
+  //       <div>new?</div>
+  //       <div
+  //         onClick={toggle}
+  //         className="text-black cursor-pointer hover:underline"
+  //       >
+  //         create account
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <Modal
       disabled={isLoading}
       isOpen={loginModal.isOpen}
       title="Login"
-      actionLabel="Continue"
+      // actionLabel="Continue"
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
-      footer={footerContent}
+      // footer={footerContent}
     />
   );
 };
