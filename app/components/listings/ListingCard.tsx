@@ -54,6 +54,12 @@ const ListingCard: React.FC<ListingCardProps> = ({
     const end = new Date(reservation.endDate);
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
+  // Extract the city name from the location
+  const cityName = React.useMemo(() => {
+    const parts = data.locationValue.split(",");
+    // Assuming the city name is always the second element
+    return parts[1]?.trim() || ""; // Use trim to remove any leading/trailing spaces
+  }, [data.locationValue]);
   return (
     <div
       onClick={() => router.push(`/listings/${data.id}`)}
@@ -72,9 +78,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-semibold text-lg truncate">
-          {/* {location?.region},{location?.label} */} {data.locationValue}
-        </div>
+        <div className="font-semibold text-lg truncate">{cityName}</div>
         <div className="font-light text-neutral-500">
           {reservationDate || data.category}
         </div>

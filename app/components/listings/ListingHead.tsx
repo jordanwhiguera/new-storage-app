@@ -27,10 +27,15 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   const { currentImageIndex, showNextImage, showPrevImage } = useImageNavigate({
     totalImages: imageSrc.length,
   });
-
+  // Extract the city name from the location
+  const cityName = React.useMemo(() => {
+    const parts = locationValue.split(",");
+    // Assuming the city name is always the second element
+    return parts[1]?.trim() || ""; // Use trim to remove any leading/trailing spaces
+  }, [locationValue]);
   return (
     <div className="-mt-20">
-      <Heading title={title} subtitle={locationValue} />
+      <Heading title={title} subtitle={cityName} />
       <div className=" mt-8 w-full h-[80vh] custom-image overflow-hidden rounded-md relative">
         <Image
           alt="Listing Image"
