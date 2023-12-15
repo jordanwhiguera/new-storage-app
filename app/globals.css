@@ -7,6 +7,12 @@ body,
 :root {
   height: 100%;
 }
+/* Custom width for listing image head */
+@media (min-width: 0px) and (max-width: 700px) {
+  .custom-image {
+    height: 20rem; /* Set your desired width */
+  }
+}
 /* Custom width for infinity for small (sm) screens */
 @media (min-width: 0px) and (max-width: 400px) {
   .custom-right-sm {
