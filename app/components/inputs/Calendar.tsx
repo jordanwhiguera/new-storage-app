@@ -45,6 +45,7 @@ const Calendar: React.FC<CalendarProps> = ({
       rangeColors={["#475569"]}
       showMonthAndYearPickers={false}
       direction="horizontal"
+      minDate={new Date()} // Set the minimum date to the current date
     />
   );
 };
