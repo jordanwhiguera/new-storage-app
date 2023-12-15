@@ -7,6 +7,27 @@ body,
 :root {
   height: 100%;
 }
+/* Custom width for infinity for small (sm) screens */
+@media (min-width: 0px) and (max-width: 400px) {
+  .custom-right-sm {
+    width: 8rem; /* Set your desired width */
+    right: 1rem; /* This sets the right position */
+  }
+}
+/* Custom width for infinity for small (sm) screens */
+@media (min-width: 400px) and (max-width: 519px) {
+  .custom-right-sm-two {
+    width: 9.75rem; /* Set your desired width */
+    right: 1.25rem; /* This sets the right position */
+  }
+}
+/* Custom width for infinity for small (sm) screens */
+@media (min-width: 520x) and (max-width: 699x) {
+  .custom-right-sm-three {
+    width: 9.75rem; /* Set your desired width */
+    right: 1.25rem; /* This sets the right position */
+  }
+}
 /* Custom right for infity for md screens */
 @media (min-width: 700px) and (max-width: 767px) {
   .custom-right-md {
