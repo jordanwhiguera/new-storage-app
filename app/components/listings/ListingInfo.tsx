@@ -25,11 +25,19 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   category,
   locationValue,
 }) => {
+  // Extract the first name from the user's name
+  const firstName = React.useMemo(() => {
+    if (user && user.name) {
+      return user.name.split(" ")[0];
+    }
+    return ""; // Return an empty string if user or user.name is null
+  }, [user]);
+
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
         <div className="text-xl font-semibold flex flex-row items-center gap-2">
-          <div>Hosted by {user?.name}</div>
+          <div>Hosted by {firstName}</div>
           <Avatar src={user?.image} />
         </div>
         <div className="flex flex-row items-center gap-4 font-light text-neutral-500">
