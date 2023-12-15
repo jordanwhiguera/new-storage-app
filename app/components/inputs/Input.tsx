@@ -24,6 +24,13 @@ const Input: React.FC<InputProps> = ({
   register,
   errors,
 }) => {
+  // Validation rules
+  const validationRules = {
+    required: required,
+    ...(formatPrice && {
+      min: { value: 1, message: "Price must be at least 1" },
+    }),
+  };
   return (
     <div className="w-full relative">
       {formatPrice && (
@@ -40,7 +47,7 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         disabled={disabled}
-        {...register(id, { required })}
+        {...register(id, validationRules)}
         placeholder=" "
         type={type}
         className={`
