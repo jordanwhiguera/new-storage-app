@@ -21,8 +21,9 @@ enum STEPS {
   // INFO = 2,
   Images = 2,
   Car = 3,
-  Description = 4,
-  Price = 5,
+  Proof = 4,
+  Description = 5,
+  Price = 6,
 }
 const RentModal = () => {
   const router = useRouter();
@@ -43,6 +44,7 @@ const RentModal = () => {
       locationLat: null,
       locationLong: null,
       imageSrc: "",
+      imageProof: "",
       carType: "",
       price: 1,
       deliveryPrice: 1,
@@ -54,6 +56,7 @@ const RentModal = () => {
   const carType = watch("carType");
   const locationValue = watch("locationValue");
   const imageSrc = watch("imageSrc");
+  const imageProof = watch("imageProof");
   const locationLatValue = watch("locationLat");
   const locationLongValue = watch("locationLong");
 
@@ -200,6 +203,20 @@ const RentModal = () => {
             </div>
           ))}
         </div>
+      </div>
+    );
+  }
+  if (step === STEPS.Proof) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Verify property ownership"
+          subtitle="Upload proof that you own any property or veichles"
+        />
+        <ImageUpload
+          value={imageProof}
+          onChange={(value) => setCustomValue("imageProof", value)}
+        />
       </div>
     );
   }

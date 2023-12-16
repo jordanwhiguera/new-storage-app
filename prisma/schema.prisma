@@ -57,6 +57,7 @@ model Listing {
   locationLong  Float? // Added longitude, optional
   carType       String?
   deliveryPrice Int?
+  imageProof    String[]
   userId        String   @db.ObjectId
   price         Int
 
