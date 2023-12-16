@@ -13,14 +13,16 @@ import Input from "../inputs/Input";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { cars } from "../Car";
 
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
   // INFO = 2,
   Images = 2,
-  Description = 3,
-  Price = 4,
+  Car = 3,
+  Description = 4,
+  Price = 5,
 }
 const RentModal = () => {
   const router = useRouter();
@@ -41,12 +43,15 @@ const RentModal = () => {
       locationLat: null,
       locationLong: null,
       imageSrc: "",
+      carType: "",
+      deliveryPrice: 0,
       price: 1,
       title: "",
       description: "",
     },
   });
   const category = watch("category");
+  const carType = watch("carType");
   const locationValue = watch("locationValue");
   const imageSrc = watch("imageSrc");
   const locationLatValue = watch("locationLat");
@@ -74,6 +79,7 @@ const RentModal = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data);
     if (step !== STEPS.Price) {
       return onNext();
     }
@@ -175,7 +181,28 @@ const RentModal = () => {
       </div>
     );
   }
-
+  if (step === STEPS.Car) {
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+        <Heading
+          title="Do you have a car to offer delivery and pickup?"
+          subtitle="Select an option"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-[50vh] overflow-y-auto">
+          {cars.map((item) => (
+            <div key={item.label} className="col-span-1">
+              <CategoryInput
+                onClick={(carType) => setCustomValue("carType", carType)}
+                selected={carType === item.label}
+                label={item.label}
+                icon={item.icon}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
   if (step === STEPS.Description) {
     bodyContent = (
       <div className="flex flex-col gap-8">

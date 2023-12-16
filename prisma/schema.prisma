@@ -55,6 +55,8 @@ model Listing {
   locationValue String
   locationLat   Float? // Added latitude, optional
   locationLong  Float? // Added longitude, optional
+  carType       String?
+  deliveryPrice Int?
   userId        String   @db.ObjectId
   price         Int
 
