@@ -10,24 +10,19 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 export const categories = [
   {
-    label: "Delivery",
-    icon: PiPackageBold,
-    description: "have host delivery package",
-  },
-  {
-    label: "self storage",
+    label: "Self storage",
     icon: PiGarageBold,
-    description: "storage for your stuff",
+    description: "Storage for your stuff",
   },
   {
-    label: "veichle-storage",
+    label: "Vehicle storage",
     icon: FaCarSide,
-    description: "storage for cars",
+    description: "Storage for Vehicles",
   },
   {
-    label: "airport parking",
+    label: "Airport parking",
     icon: FaPlaneDeparture,
-    description: "parking for cars near airports",
+    description: "Parking for cars near airports",
   },
 ];
 
