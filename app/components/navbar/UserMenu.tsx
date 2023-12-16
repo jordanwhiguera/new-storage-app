@@ -46,6 +46,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             {currentUser ? (
               //Need z to display over listing card
               <div className="z-20">
+                <Menu onClick={() => router.push("/")} label="Home" />
                 <Menu onClick={() => router.push("/booked")} label="Booked" />
                 <Menu
                   onClick={() => router.push("/favorites")}
@@ -54,11 +55,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
                 <Menu onClick={rentModal.onOpen} label="Become a host" />
                 <Menu
                   onClick={() => router.push("/reservations")}
-                  label="Host: reservations"
+                  label="Manage reservations"
                 />
                 <Menu
                   onClick={() => router.push("/properties")}
-                  label="Host: listings"
+                  label="Manage listings"
                 />
 
                 <hr />
@@ -66,6 +67,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               </div>
             ) : (
               <div>
+                <Menu onClick={() => router.push("/")} label="Home" />
                 <Menu onClick={loginModal.onOpen} label="Log in" />
                 {/* <Menu onClick={registerModal.onOpen} label="Sign Up" /> */}
               </div>
