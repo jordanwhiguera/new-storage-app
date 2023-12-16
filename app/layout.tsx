@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Storage",
-  description: "Easy and Flexible Storage Solutions",
+  title: "Stowbase | Self Storage Vehicle Storage & Airport Parking",
+  description: "Easy & Flexible Storage Solutions",
 };
 
 export default function RootLayout({
