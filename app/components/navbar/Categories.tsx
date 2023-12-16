@@ -17,7 +17,7 @@ export const categories = [
   {
     label: "Vehicle storage",
     icon: FaCarSide,
-    description: "Storage for Vehicles",
+    description: "Storage for vehicles",
   },
   {
     label: "Airport parking",
