@@ -18,6 +18,7 @@ export async function POST(request: Request) {
     locationLat,
     locationLong,
     price,
+    deliveryPrice,
   } = body;
   Object.keys(body).forEach((value: any) => {
     if (!body[value]) {
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
       locationLat,
       locationLong,
       price: parseInt(price, 10),
+      deliveryPrice: parseInt(deliveryPrice, 10),
       userId: currentUser.id,
     },
   });

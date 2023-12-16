@@ -44,8 +44,8 @@ const RentModal = () => {
       locationLong: null,
       imageSrc: "",
       carType: "",
-      deliveryPrice: 0,
       price: 1,
+      deliveryPrice: 1,
       title: "",
       description: "",
     },
@@ -233,10 +233,11 @@ const RentModal = () => {
   if (step === STEPS.Price) {
     bodyContent = (
       <div className="flex flex-col gap-8">
-        <Heading title="Price" subtitle="Set a price per day space" />
+        <Heading title="Price" subtitle="Set a price per day for your space" />
+
         <Input
           id="price"
-          label="Price"
+          label=" Daily price"
           formatPrice
           type="number"
           disabled={isLoading}
@@ -244,6 +245,26 @@ const RentModal = () => {
           errors={errors}
           required
         />
+        {carType !== "No delivery / pickup" && (
+          <>
+            <hr />
+            <Heading
+              title=""
+              subtitle="Set your price to deliver items and pickup items"
+            />
+
+            <Input
+              id="deliveryPrice"
+              label=" Delivery / pickup price"
+              formatPrice
+              type="number"
+              disabled={isLoading}
+              register={register}
+              errors={errors}
+              required
+            />
+          </>
+        )}
       </div>
     );
   }
