@@ -6,6 +6,7 @@ import { IconType } from "react-icons";
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
 import Map from "../Map";
+import Button from "../Button";
 
 interface ListingInfoProps {
   user: SafeUser;
@@ -41,7 +42,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <Avatar src={user?.image} />
         </div>
         <div className="flex flex-row items-center gap-4 font-light text-neutral-500">
-          <div> random info later</div>
+          <Button smallWidth label="Contact host" onClick={() => {}} />
         </div>
       </div>
       <hr />
