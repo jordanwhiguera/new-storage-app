@@ -21,9 +21,11 @@ model User {
   updatedAt      DateTime  @updatedAt
   favoriteIds    String[]  @db.ObjectId
 
-  accounts     Account[]
-  listings     Listing[]
-  reservations Reservation[]
+  accounts         Account[]
+  listings         Listing[]
+  reservations     Reservation[]
+  sentMessages     Message[]     @relation("MessageSender") // Messages sent by the user
+  receivedMessages Message[]     @relation("MessageRecipient") // Messages received by the user
 }
 
 model Account {
@@ -76,4 +78,16 @@ model Reservation {
 
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+
+// Message model for handling direct messaging between users.
+model Message {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  content     String // Content of the message
+  createdAt   DateTime @default(now()) // Timestamp of when the message was sent
+  senderId    String   @db.ObjectId // ID of the user who sent the message
+  recipientId String   @db.ObjectId // ID of the user who received the message
+
+  sender    User @relation(name: "MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  recipient User @relation(name: "MessageRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
 }
