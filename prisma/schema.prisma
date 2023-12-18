@@ -21,11 +21,11 @@ model User {
   updatedAt      DateTime  @updatedAt
   favoriteIds    String[]  @db.ObjectId
 
-  accounts         Account[]
-  listings         Listing[]
-  reservations     Reservation[]
-  sentMessages     Message[]     @relation("MessageSender") // Messages sent by the user
-  receivedMessages Message[]     @relation("MessageRecipient") // Messages received by the user
+  accounts     Account[]
+  listings     Listing[]
+  reservations Reservation[]
+  sentMessages Message[]     @relation("MessageSender")
+  chatSessions ChatSession[]
 }
 
 model Account {
@@ -80,14 +80,24 @@ model Reservation {
   listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
 }
 
-// Message model for handling direct messaging between users.
-model Message {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  content     String // Content of the message
-  createdAt   DateTime @default(now()) // Timestamp of when the message was sent
-  senderId    String   @db.ObjectId // ID of the user who sent the message
-  recipientId String   @db.ObjectId // ID of the user who received the message
+model ChatSession {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  sender    User @relation(name: "MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
-  recipient User @relation(name: "MessageRecipient", fields: [recipientId], references: [id], onDelete: Cascade)
+  members  String[]  @db.ObjectId // Array of user IDs in the chat session
+  messages Message[]
+  User     User?     @relation(fields: [userId], references: [id])
+  userId   String?   @db.ObjectId
+}
+
+model Message {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  content       String // Content of the message
+  createdAt     DateTime @default(now()) // Timestamp of when the message was sent
+  senderId      String   @db.ObjectId // ID of the user who sent the message
+  chatSessionId String   @db.ObjectId
+
+  sender      User        @relation(name: "MessageSender", fields: [senderId], references: [id], onDelete: Cascade)
+  chatSession ChatSession @relation(fields: [chatSessionId], references: [id], onDelete: Cascade)
 }
