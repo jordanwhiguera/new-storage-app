@@ -37,7 +37,7 @@ const Calendar: React.FC<CalendarProps> = ({
 
   return (
     <DateRange
-      editableDateInputs={true}
+      // editableDateInputs={true}
       onChange={handleSelect}
       moveRangeOnFirstSelection={false}
       ranges={[value]}
