@@ -41,7 +41,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
           <div>Hosted by {firstName}</div>
           <Avatar src={user?.image} />
         </div>
-        <Button smallWidth label="Contact host" onClick={() => {}} />
       </div>
       <hr />
       {category && (
