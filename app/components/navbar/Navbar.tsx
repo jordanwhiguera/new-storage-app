@@ -41,6 +41,7 @@ const Navbar: React.FC<NavbarProps> = ({
                 <Search className="md:w-96 w-full" />
               </div>
             )}
+
             <UserMenu currentUser={currentUser} />
           </div>
         </Container>
